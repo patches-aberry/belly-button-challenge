@@ -70,7 +70,7 @@ function buildCharts(subjectID) {
         text: 'OTU ID'
     }},
     height: 600,
-    width: 800
+    width: 600
   };
   
   Plotly.newPlot('bubble', bubbleData, bubbleLayout);
@@ -82,10 +82,8 @@ function demoInfo(subjectID) {
 
   d3.json(url).then((data) => {
 
-  // filter the data to get the selected subject's data
     let subjectData = data.metadata.filter(x => x.id == subjectID);
 
-  // update the HTML text on the demographic info card
     const sample_metadata = document.getElementById('sample-metadata');
     sample_metadata.innerHTML = `id: ${String(subjectData[0].id)} 
     <br>ethnicity: ${subjectData[0].ethnicity}
@@ -97,8 +95,7 @@ function demoInfo(subjectID) {
 
 })}
 
-// optionChanged function to feed into buildCharts and demoInfo functions 
-//   to update visualizations based on selected subject ID
+
 function optionChanged(subjectID) {
   buildCharts(subjectID);
   demoInfo(subjectID);
